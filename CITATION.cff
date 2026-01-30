@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata from this file."
+title: "TKTMdp: Ontology-grounded action admissibility for DRL baseload optimisation"
+authors:
+  - family-names: Bilal
+    given-names: Mohammad 
+repository-code: "https://github.com/mbilal1111/TKTMdp"
+license: "MIT"
