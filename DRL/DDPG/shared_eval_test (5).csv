@@ -1,0 +1,18 @@
+2025-12-22 13:42:08,327 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  10 | Return:  926.000 | shared/step: -0.7712
+2025-12-22 13:44:25,121 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  20 | Return:  890.000 | shared/step: -0.7409
+2025-12-22 13:46:48,037 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  30 | Return:  924.000 | shared/step: -0.7582
+2025-12-22 13:49:08,292 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  40 | Return:  936.000 | shared/step: -0.7593
+2025-12-22 13:51:30,672 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  50 | Return:  920.000 | shared/step: -0.7612
+2025-12-22 13:53:50,414 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  60 | Return:  938.000 | shared/step: -0.7631
+2025-12-22 13:56:15,831 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  70 | Return:  970.000 | shared/step: -0.7719
+2025-12-22 13:58:44,989 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  80 | Return:  944.000 | shared/step: -0.7695
+2025-12-22 14:01:14,949 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode  90 | Return:  966.000 | shared/step: -0.7775
+2025-12-22 14:03:38,468 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | Episode 100 | Return:  900.000 | shared/step: -0.7632
+2025-12-22 14:03:38,474 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | wrote C:\Workspace\Research\reinforcement_learning\ddpg_results\DDPG_combined_Input__temperature_vs_thr_Ontology\episode_metrics.csv
+2025-12-22 14:03:38,477 | INFO | [SAVED] C:\Workspace\Research\reinforcement_learning\ddpg_results\DDPG_combined_Input__temperature_vs_thr_Ontology\DDPG_combined_Input__temperature_vs_thr_Ontology.pt
+2025-12-22 14:03:45,635 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | TEST  μ=50.000 σ=0.000
+2025-12-22 14:03:45,785 | INFO | DDPG_combined_Input__temperature_vs_thr_Ontology | SHARED_OPT | policy/step=-0.7920 | baseline/step=-0.0308 | oracle/step=-0.0002 | ratio=-24.8944 | gap=0.7918
+2025-12-22 14:03:45,937 | INFO | [SAVED] C:\Workspace\Research\reinforcement_learning\ddpg_results\DDPG_combined_Input__temperature_vs_thr_Ontology\curve_DDPG_combined_Input__temperature_vs_thr_Ontology.png
+2025-12-22 14:03:49,375 | INFO | [TIME] DDPG_combined_Input__temperature_vs_thr_Ontology  1369.79 s
+2025-12-22 14:03:49,375 | INFO | 
+Training finished in 22 min 52.5 s

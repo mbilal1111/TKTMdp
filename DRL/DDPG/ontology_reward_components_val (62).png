@@ -1,0 +1,2 @@
+policy_shared_return,policy_shared_per_step,baseline_shared_return,baseline_shared_per_step,oracle_shared_return,oracle_shared_per_step,optimality_ratio,optimality_gap_per_step,steps,max_flex
+-805.9948181683602,-0.8059948181683602,-30.825181795957892,-0.030825181795957893,-0.22051333226395867,-0.00022051333226395868,-25.32846856378443,0.8057743048360962,1000,196.15058013916007

@@ -1,0 +1,18 @@
+2025-12-22 12:54:15,845 | INFO | DDPG_combined_Input__none_Ontology | Episode  10 | Return: -120.560 | shared/step: -0.1206
+2025-12-22 12:57:14,285 | INFO | DDPG_combined_Input__none_Ontology | Episode  20 | Return: -138.691 | shared/step: -0.1387
+2025-12-22 12:59:46,630 | INFO | DDPG_combined_Input__none_Ontology | Episode  30 | Return: -114.673 | shared/step: -0.1147
+2025-12-22 13:02:03,715 | INFO | DDPG_combined_Input__none_Ontology | Episode  40 | Return: -125.234 | shared/step: -0.1252
+2025-12-22 13:04:21,725 | INFO | DDPG_combined_Input__none_Ontology | Episode  50 | Return: -120.645 | shared/step: -0.1206
+2025-12-22 13:06:47,819 | INFO | DDPG_combined_Input__none_Ontology | Episode  60 | Return: -120.945 | shared/step: -0.1209
+2025-12-22 13:09:11,846 | INFO | DDPG_combined_Input__none_Ontology | Episode  70 | Return: -122.034 | shared/step: -0.1220
+2025-12-22 13:11:38,964 | INFO | DDPG_combined_Input__none_Ontology | Episode  80 | Return: -118.716 | shared/step: -0.1187
+2025-12-22 13:14:04,670 | INFO | DDPG_combined_Input__none_Ontology | Episode  90 | Return: -113.850 | shared/step: -0.1139
+2025-12-22 13:16:40,484 | INFO | DDPG_combined_Input__none_Ontology | Episode 100 | Return: -116.594 | shared/step: -0.1166
+2025-12-22 13:16:40,490 | INFO | DDPG_combined_Input__none_Ontology | wrote C:\Workspace\Research\reinforcement_learning\ddpg_results\DDPG_combined_Input__none_Ontology\episode_metrics.csv
+2025-12-22 13:16:40,493 | INFO | [SAVED] C:\Workspace\Research\reinforcement_learning\ddpg_results\DDPG_combined_Input__none_Ontology\DDPG_combined_Input__none_Ontology.pt
+2025-12-22 13:16:45,518 | INFO | DDPG_combined_Input__none_Ontology | TEST  μ=-19.467 σ=0.000
+2025-12-22 13:16:45,675 | INFO | DDPG_combined_Input__none_Ontology | SHARED_OPT | policy/step=-0.0195 | baseline/step=-0.0308 | oracle/step=-0.0002 | ratio=0.3704 | gap=0.0193
+2025-12-22 13:16:45,820 | INFO | [SAVED] C:\Workspace\Research\reinforcement_learning\ddpg_results\DDPG_combined_Input__none_Ontology\curve_DDPG_combined_Input__none_Ontology.png
+2025-12-22 13:16:49,324 | INFO | [TIME] DDPG_combined_Input__none_Ontology  1446.20 s
+2025-12-22 13:16:49,325 | INFO | 
+Training finished in 24 min 06.9 s
