@@ -1,4 +1,3 @@
-
 """
 Author: Rosie-Plimmer 
 """
@@ -25,8 +24,16 @@ import torch.nn.functional as F
 # ──────────────────────────────────────────────
 # ▶ Paths and logging
 # ──────────────────────────────────────────────
-RESULTS_ROOT = Path.cwd() / "reinforcement_learning/ddpg/ddpg_results_5"
-RESULTS_ROOT.mkdir(parents=True, exist_ok=True)
+DEFAULT_N_RUNS = 5
+RESULTS_BASE_DIR = Path.cwd() / "reinforcement_learning/ddpg"
+
+def get_results_root(run_number: int) -> Path:
+    root = RESULTS_BASE_DIR / f"new_ddpg_results_{run_number}"
+    root.mkdir(parents=True, exist_ok=True)
+    return root
+
+# Default so module-level code still has a valid results root
+RESULTS_ROOT = get_results_root(1)
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
@@ -1134,22 +1141,19 @@ def train_ddpg(
 # ▶ CLI helper 
 # ────────────────────────────────────────────────
 if __name__ == "__main__":
-    ## Ask the user for the directory path containing the simulation training csv files
-    #dir_str_train = input("Enter path to simulation data (train)':\n> ").strip()
-    #TRAIN_DIR = Path(dir_str_train)
-#
-    #if not TRAIN_DIR.exists():
-        #raise FileNotFoundError(f"Train data not found at: {TRAIN_DIR}")
-#    
-    ## Ask the user for the directory path containing the simulation test csv files
-    #dir_str_test = input("Enter path to simulation data (test)':\n> ").strip()
-    #TEST_DIR = Path(dir_str_test)
-#
-    #if not TEST_DIR.exists():
-        #raise FileNotFoundError(f"Test data not found at: {TEST_DIR}")
-    
-    TRAIN_DIR = r"C:\Workspace\Research\reinforcement_learning\ddpg\training_data\dynamics_timeseries"
-    TEST_DIR  = r"C:\Workspace\Research\reinforcement_learning\ddpg\test_data\dynamics_timeseries"
+    # Ask the user for the directory path containing the simulation training csv files
+    dir_str_train = input("Enter path to ddpg simulation data (train):\n> ").strip()
+    TRAIN_DIR = Path(dir_str_train)
+
+    if not TRAIN_DIR.exists():
+        raise FileNotFoundError(f"Train data not found at: {TRAIN_DIR}")
+   
+    # Ask the user for the directory path containing the simulation test csv files
+    dir_str_test = input("Enter path to ddpg simulation data (test):\n> ").strip()
+    TEST_DIR = Path(dir_str_test)
+
+    if not TEST_DIR.exists():
+        raise FileNotFoundError(f"Test data not found at: {TEST_DIR}")
 
     solar_panel_flex_power_ids = [
         "FLEX-POWER_6ca004a0-2119-11ef-a9db-8376e4779933",
@@ -1194,38 +1198,51 @@ if __name__ == "__main__":
     ]
 
     SKIP_COMPLETED = True
+    # Choose what "done" means
     DONE_MARKER_NAME = "episode_metrics.csv"  # or f"{run_label}.pt" or "training_log.txt"
 
-    failures = []
+    N = DEFAULT_N_RUNS   # default = 5
+    all_failures = []
 
-    for training_input, ontology in SWEEP_CONFIGS:
-        ti = _norm_training_input(training_input)
-        run_label = f"DDPG_{ti}_Input__{ontology}_Ontology"
-        run_dir = RESULTS_ROOT / run_label
-        done_marker = run_dir / DONE_MARKER_NAME
+    for run_number in range(1, N + 1):
+        RESULTS_ROOT = get_results_root(run_number)
 
-        if SKIP_COMPLETED and done_marker.exists():
-            print(f"[SKIP] {run_label} (found {DONE_MARKER_NAME})")
-            continue
+        print(f"\n\n========== FULL RUN {run_number}/{N} ==========")
+        print(f"[RESULTS] {RESULTS_ROOT}")
 
-        print(f"\n========== RUN: {run_label} ==========")
+        failures = []
 
-        try:
-            train_ddpg(
-                solar_panel_flex_power_ids,
-                heatpump_flex_power_ids,
-                TRAIN_DIR,
-                TEST_DIR,
-                ontology=ontology,
-                training_input=ti,
-                combine_weights=(1.0, 1.0, 1.0, 1.0),  # (svh, bln, battery, temperature)
-            )
-        except Exception as e:
-            print(f"[FAIL] {run_label}: {e}")
-            failures.append((run_label, repr(e)))
+        for training_input, ontology in SWEEP_CONFIGS:
+            ti = _norm_training_input(training_input)
+            run_label = f"DDPG_{ti}_Input__{ontology}_Ontology"
+            run_dir = RESULTS_ROOT / run_label
+            done_marker = run_dir / DONE_MARKER_NAME
 
-    if failures:
+            if SKIP_COMPLETED and done_marker.exists():
+                print(f"[SKIP][run {run_number}] {run_label} (found {DONE_MARKER_NAME})")
+                continue
+
+            print(f"\n========== RUN {run_number}/{N}: {run_label} ==========")
+
+            try:
+                train_ddpg(
+                    solar_panel_flex_power_ids,
+                    heatpump_flex_power_ids,
+                    TRAIN_DIR,
+                    TEST_DIR,
+                    ontology=ontology,
+                    training_input=ti,
+                    combine_weights=(1.0, 1.0, 1.0, 1.0),  # (svh, bln, battery, temperature)
+                )
+            except Exception as e:
+                print(f"[FAIL][run {run_number}] {run_label}: {e}")
+                failures.append((run_label, repr(e)))
+
+        if failures:
+            all_failures.append((run_number, failures))
+
+    if all_failures:
         print("\nSome runs failed:")
-        for label, err in failures:
-            print(f" - {label}: {err}")
-
+        for run_number, failures in all_failures:
+            for label, err in failures:
+                print(f" - run {run_number} | {label}: {err}")
